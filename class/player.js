@@ -1,4 +1,5 @@
 const { Item } = require("./item");
+const { Food } = require("./food");
 
 class Player {
 
@@ -54,6 +55,12 @@ class Player {
 
     eatItem(itemName) {
         // Fill this in
+        // remove from player's inventory
+        this.items.filter((item,i) => {
+            if (item.name === itemName && item instanceof Food) {
+                this.items.splice(i,1);
+            }
+        });
 
     }
 
