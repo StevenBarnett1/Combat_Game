@@ -44,8 +44,15 @@ class Room {
     }
 
     getItemByName(name) {
+        let desiredItem;
+        this.items = this.items.filter(item => {
+            if (item.name === name) desiredItem = item;
+            return !item.name === name;
+            //If items name is not equal to name that we pass in, then that item will be added to
+            //the this.items array 
+        })
+        return desiredItem;
 
-        // Fill this in
     }
 
 }

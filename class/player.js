@@ -1,3 +1,5 @@
+const { Item } = require("./item");
+
 class Player {
 
     constructor(name, startingRoom) {
@@ -33,13 +35,21 @@ class Player {
 
     takeItem(itemName) {
 
-        // Fill this in
+        this.currentRoom.items.filter((item,i) => {
+            if(itemName === item.name)this.items.push(item)
+            this.currentRoom.items.splice(i,1);
+        });
 
     }
 
     dropItem(itemName) {
 
-        // Fill this in
+        this.items.filter((item,i)=> {
+            if(itemName === item.name){
+                this.items.splice(i,1)
+                this.currentRoom.items.push(item)
+            }
+        })
     }
 
     eatItem(itemName) {
@@ -48,9 +58,17 @@ class Player {
     }
 
     getItemByName(name) {
+        let desiredItem;
+    this.items = this.items.filter(item=> {
+        if(item.name === name)desiredItem = item;
+        return !item.name === name;
+        //If items name is not equal to name that we pass in, then that item will be added to
+        //the this.items(array)
+    })
+    return desiredItem;
 
-        // Fill this in
     }
+
 }
 
 module.exports = {
