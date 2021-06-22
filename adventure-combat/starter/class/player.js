@@ -38,6 +38,7 @@ class Player extends Character {
     this.currentRoom.items.filter((item, i) => {
       if (itemName === item.name) this.items.push(item)
       this.currentRoom.items.splice(i, 1);
+      console.log(`You just picked up ${this.item}`);
     });
 
   }
@@ -48,6 +49,7 @@ class Player extends Character {
       if (itemName === item.name) {
         this.items.splice(i, 1)
         this.currentRoom.items.push(item)
+        console.log(`You just dropped ${this.item}`);
       }
     })
   }
@@ -58,6 +60,7 @@ class Player extends Character {
     this.items.filter((item, i) => {
       if (item.name === itemName && item instanceof Food) {
         this.items.splice(i, 1);
+        console.log(`You just ate ${item}`);
       }
     });
 
@@ -76,9 +79,11 @@ class Player extends Character {
   }
 
   hit(name) {
-
     // Fill this in
-
+    let enemies = this.currentRoom.getEnemies();
+    let currentEnemy = enemies.filter(enemy => enemy.name === name) [0]
+    currentEnemy.applyDamage(this.strength);
+    currentEnemy.attackTarget = this;
   }
 
   die() {

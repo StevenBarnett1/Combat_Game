@@ -93,7 +93,7 @@ function processCommand() {
       let enemyName = cmd.split(" ")[1];
 
       player.hit(enemyName);
-
+      
     } else {
       console.log("Invalid command. Type 'h' for help.");
     }

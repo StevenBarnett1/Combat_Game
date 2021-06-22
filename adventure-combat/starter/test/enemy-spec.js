@@ -195,7 +195,8 @@ describe ('Enemy', function () {
     player.hit('enemy');
 
     enemy.cooldown = 0;
-
+    player.health = 100; // added in
+    expect(enemy.health).to.equal(90); // added in
     expect(player.health).to.equal(100);
     enemy.attack();
     expect(player.health).to.equal(90);
@@ -204,5 +205,3 @@ describe ('Enemy', function () {
   });
 
 });
-
-

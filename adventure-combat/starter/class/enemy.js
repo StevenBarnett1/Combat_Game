@@ -5,6 +5,7 @@ class Enemy extends Character {
   constructor(name, description, currentRoom) {
     super(name,description,currentRoom)
     this.cooldown = 3000;
+    this.attackTarget = null;
   }
 
   setPlayer(player) {
@@ -21,13 +22,18 @@ class Enemy extends Character {
     let direction = exitArray[randomIndex]
 
     let newRoom = this.currentRoom.exits[direction]
-    
+
     this.currentRoom = newRoom
+    this.cooldown = 3000;
+    // resets cooldown when enemy moves to newRoom
 
   }
 
   takeSandwich() {
     // Fill this in
+    let sandwich = this.currentRoom.items.filter(item => item.name === 'sandwich')[0];
+    this.items.push(sandwich);
+    console.log(`You picked up the sandwich!`)
   }
 
   // Print the alert only if player is standing in the same room
@@ -48,19 +54,23 @@ class Enemy extends Character {
 
   attack() {
     // Fill this in
+    this.attackTarget.applyDamage(this.strength);
+    this.cooldown = 3000;
   }
 
-  applyDamage(amount) {
-    // Fill this in
-  }
+  // applyDamage(amount) {
+  //   // Fill this in
+  // }
 
 
 
   act() {
     if (this.health <= 0) {
-      // Dead, do nothing;
+      this.die();// Dead, do nothing;
     } else if (this.cooldown > 0) {
       this.rest();
+    } else if (this.attackTarget) {
+      this.attack();
     } else {
       this.scratchNose();
       this.rest();
