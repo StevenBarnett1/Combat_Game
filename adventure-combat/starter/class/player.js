@@ -54,17 +54,7 @@ class Player extends Character {
     })
   }
 
-  eatItem(itemName) {
-    // Fill this in
-    // remove from player's inventory
-    this.items.filter((item, i) => {
-      if (item.name === itemName && item instanceof Food) {
-        this.items.splice(i, 1);
-        console.log(`You just ate ${item}`);
-      }
-    });
-
-  }
+  
 
   getItemByName(name) {
     let desiredItem;

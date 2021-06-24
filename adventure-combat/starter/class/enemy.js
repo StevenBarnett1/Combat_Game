@@ -12,6 +12,8 @@ class Enemy extends Character {
     this.player = player;
   }
 
+  //creating dark room, add lantern item, different light items
+  //shops, armor
 
   randomMove() {
 
@@ -24,7 +26,9 @@ class Enemy extends Character {
     let newRoom = this.currentRoom.exits[direction]
 
     this.currentRoom = newRoom
+    
     this.cooldown = 3000;
+
     // resets cooldown when enemy moves to newRoom
 
   }
@@ -49,6 +53,7 @@ class Enemy extends Character {
       this.cooldown = 0;
       this.act();
     };
+
     setTimeout(resetCooldown, this.cooldown);
   }
 

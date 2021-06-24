@@ -83,11 +83,11 @@ describe ('Item', function () {
 describe ('Food', function () {
 
 
-  it('should have name and description attributes', function () {
-    let food = new Food("sandwich", "a delicious sandwich");
-
+  it('should have name, health, and description attributes', function () {
+    let food = new Food("sandwich",10, "a delicious sandwich");
     expect(food.name).to.equal("sandwich");
     expect(food.description).to.equal("a delicious sandwich");
+    expect(food.health).to.eq(10)
 
   });
 
@@ -105,17 +105,18 @@ describe ('Food', function () {
 
 
   it('can be eaten by a player', function () {
-    let food = new Food("sandwich", "a delicious sandwich");
+    let food = new Food("sandwich", 10,"a delicious sandwich");
     let room = new Room("Test Room", "A test room");
     let player = new Player("player", room);
-
+    player.health = 90
     player.items.push(food);
-
     expect(player.items.length).to.equal(1);
 
     player.eatItem("sandwich");
-
     expect(player.items.length).to.equal(0);
+    expect(player.health).to.eq(100)
+
+
 
   });
 
@@ -138,4 +139,3 @@ describe ('Food', function () {
 
 
 });
-
