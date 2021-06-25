@@ -18,14 +18,16 @@ class Character {
 
   }
 
+
   die() {
       this.currentRoom.items = this.items
       this.items = [];
       this.currentRoom = null
   }
 
+
   eatItem(itemName) {
-    
+
     this.items.filter((item, i) => {
       if (item.name === itemName && item instanceof Food) {
         this.health += item.health
